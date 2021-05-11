@@ -55,11 +55,11 @@ if uploaded_file is not None:
         href = f'<a href="data:file/csv;base64,{b64}" download="null_rate.csv">Download Null Rate CSV File</a>'
         return href
     
-     def filedownload_fill(df):
-        csv = df.to_csv(index=False)
-        b64 = base64.b64encode(excel_file.encode()).decode()  # strings <-> bytes conversions
-        href = f'<a href="data:file/csv;base64,{b64}" download="fill_rate.csv">Download Fill Rate CSV File</a>'
-        return href
+     #def filedownload_fill(df):
+        #csv = df.to_csv(index=False)
+        #b64 = base64.b64encode(excel_file.encode()).decode()  # strings <-> bytes conversions
+        #href = f'<a href="data:file/csv;base64,{b64}" download="fill_rate.csv">Download Fill Rate CSV File</a>'
+        #return href
 
     st.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
-    st.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
+    #st.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
