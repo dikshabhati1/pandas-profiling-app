@@ -61,5 +61,5 @@ if uploaded_file is not None:
         href = f'<a href="data:file/csv_2;base64,{b64}" download="fill_rate.csv">Download Fill Rate CSV File</a>'
         return href
 
-    st.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
-    st.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
+    st.sidebar.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
+    st.sidebar.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
