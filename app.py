@@ -49,24 +49,17 @@ if uploaded_file is not None:
     fill_rate_df['fill_rate'] = [k for k in fill_rates]
     
     
-   
-    def dfs_tabs(df_list, sheet_list, file_name):
-        writer = pd.ExcelWriter(file_name,engine='xlsxwriter')   
-        for dataframe, sheet in zip(df_list, sheet_list):
-            dataframe.to_excel(writer, sheet_name=sheet, startrow=0 , startcol=0)   
-        writer.save()
-
-    # list of dataframes and sheet names
-    dfs = [null_rate_df,fill_rate_df]
-    sheets = ['null_rate_df','fill_rate_df']  
-    
-    # run function
-    excel_file = dfs_tabs(dfs, sheets, 'output_files.xlsx')
-    
-    def filedownload(df):
-        #csv = df.to_csv(index=False)
+    def filedownload_null(df):
+        csv = df.to_csv(index=False)
         b64 = base64.b64encode(excel_file.encode()).decode()  # strings <-> bytes conversions
-        href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV File</a>'
+        href = f'<a href="data:file/csv;base64,{b64}" download="null_rate.csv">Download CSV File</a>'
+        return href
+    
+     def filedownload_fill(df):
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(excel_file.encode()).decode()  # strings <-> bytes conversions
+        href = f'<a href="data:file/csv;base64,{b64}" download="fill_rate.csv">Download CSV File</a>'
         return href
 
-    st.markdown(filedownload(excel_file), unsafe_allow_html=True)
+    st.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
+    st.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
