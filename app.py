@@ -29,6 +29,7 @@ if uploaded_file is not None:
     st_profile_report(pr)
     
     
+    columns_list = df.columns
     l = []
     for column in columns_list:
         data = df[df[column].isna()]
