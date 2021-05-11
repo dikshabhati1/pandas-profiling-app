@@ -52,13 +52,13 @@ if uploaded_file is not None:
     def filedownload_null(df):
         csv_1 = df.to_csv(index=False)
         b64 = base64.b64encode(csv_1.encode()).decode()  # strings <-> bytes conversions
-        href = f'<a href="data:file/csv;base64,{b64}" download="null_rate.csv">Download Null Rate CSV File</a>'
+        href = f'<a href="data:file/csv_1;base64,{b64}" download="null_rate.csv">Download Null Rate CSV File</a>'
         return href
     
-     def filedownload_fill(df):
+    def filedownload_fill(df):
         csv_2 = df.to_csv(index=False)
         b64 = base64.b64encode(csv_2.encode()).decode()  # strings <-> bytes conversions
-        href = f'<a href="data:file/csv;base64,{b64}" download="fill_rate.csv">Download Fill Rate CSV File</a>'
+        href = f'<a href="data:file/csv_2;base64,{b64}" download="fill_rate.csv">Download Fill Rate CSV File</a>'
         return href
 
     st.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
