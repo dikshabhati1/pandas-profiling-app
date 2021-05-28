@@ -78,22 +78,15 @@ if uploaded_file is not None:
     
     # street address (word length)
     def street_add_word():
-        length = int(input("Enter the word length : "))
-        data_street = df[df['no_of_words_in_street_address'] == length]
+        data_street = df[df['no_of_words_in_street_address'] == next_words]
         data_street.reset_index(inplace=True,drop=True)
         return print(data_street[0:20]['street_address'],data_street['ds_instance_id'].value_counts().to_dict())
 
 
-    # location name (character length)
-    def location_character_length():
-        length = int(input("Enter the character length : "))
-        data_loc_1 = df[df['no_of_characters_in_location_name'] == length]
-        data_loc_1.reset_index(inplace=True,drop=True)
-        return print(data_loc_1[0:20]['location_name'],data_loc_1['ds_instance_id'].value_counts().to_dict())
 
-    # location name (word length)
-    def location_word():
-        length = int(input("Enter the word length : "))
-        data_loc_2 = df[df['no_of_words_in_location'] == length]
-        data_loc_2.reset_index(inplace=True,drop=True)
-        return print(data_loc_2[0:20]['location_name'],data_loc_2['ds_instance_id'].value_counts().to_dict())
+    st.markdown("<h4 >Max text length (in characters)</h4>", unsafe_allow_html=True)
+    next_words = slider = st.slider('', 5, 800)
+    button = st.button('Enter')
+    
+    if button:
+        st.markdown(f"""<h3 style='text-align: center; color: white;background :rgba(0, 0, 255, 0.9);'> {street_add_word()}</h3>""", unsafe_allow_html=True)
