@@ -80,11 +80,11 @@ if uploaded_file is not None:
     def street_add_word():
         data_street = df[df['no_of_words_in_street_address'] == next_words]
         data_street.reset_index(inplace=True,drop=True)
-        return print(data_street[0:20]['street_address'],data_street['ds_instance_id'].value_counts().to_dict())
+        return data_street['ds_instance_id'].value_counts().to_dict()
 
 
 
-    st.markdown("<h4 >Max text length (in characters)</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 >Enter the street address word length :</h4>", unsafe_allow_html=True)
     next_words = slider = st.slider('', 5, 800)
     button = st.button('Enter')
     
