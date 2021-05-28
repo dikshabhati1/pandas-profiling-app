@@ -63,3 +63,37 @@ if uploaded_file is not None:
 
     st.sidebar.markdown(filedownload_null(null_rate_df), unsafe_allow_html=True)
     st.sidebar.markdown(filedownload_fill(fill_rate_df), unsafe_allow_html=True)
+
+    
+    
+    
+    # number of words in street address
+    df['no_of_words_in_street_address'] = df['street_address'].apply(lambda x:len(str(x).split()))
+
+    # number of characters in location name
+    df['no_of_characters_in_location_name'] = df['location_name'].str.len()
+
+    # number of words in location name
+    df['no_of_words_in_location'] = df['location_name'].apply(lambda x:len(str(x).split()))
+    
+    # street address (word length)
+    def street_add_word():
+        length = int(input("Enter the word length : "))
+        data_street = df[df['no_of_words_in_street_address'] == length]
+        data_street.reset_index(inplace=True,drop=True)
+        return print(data_street[0:20]['street_address'],data_street['ds_instance_id'].value_counts().to_dict())
+
+
+    # location name (character length)
+    def location_character_length():
+        length = int(input("Enter the character length : "))
+        data_loc_1 = df[df['no_of_characters_in_location_name'] == length]
+        data_loc_1.reset_index(inplace=True,drop=True)
+        return print(data_loc_1[0:20]['location_name'],data_loc_1['ds_instance_id'].value_counts().to_dict())
+
+    # location name (word length)
+    def location_word():
+        length = int(input("Enter the word length : "))
+        data_loc_2 = df[df['no_of_words_in_location'] == length]
+        data_loc_2.reset_index(inplace=True,drop=True)
+        return print(data_loc_2[0:20]['location_name'],data_loc_2['ds_instance_id'].value_counts().to_dict())
